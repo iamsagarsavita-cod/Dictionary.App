@@ -4,7 +4,7 @@ import Dictionary from './component/Dictionary';
 function App() {
   return (
     <div>
-      
+      <Dictionary/>
     </div>
   )
 }
