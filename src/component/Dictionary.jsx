@@ -9,7 +9,27 @@ const Dictionary = () => {
   const [errors, setErrors] = useState("");
   const [wordData, setWordData] = useState(null);
 
+  const searchWord = async () => {
+    try{
+      if(word.trim().length === 0){
+        setErrors("Please Enter a Word...");
+        return;
+      }
 
+      setLoading(true);
+      setErrors("");
+
+      let res = await axios.get(
+        `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`,
+      );
+      console.log(res);
+    }catch (error){
+      console.log(error);
+      setErrors("word Not Found");
+    }finally{
+      setLoading(false);
+    }
+  }
 
 
   return (
@@ -31,7 +51,21 @@ const Dictionary = () => {
             Search</button>
         </div>
 
+        {
+          loading && (
+            <h2 className=" text-center mt-6 text-lg text-red-800 font-semibold animate-pulse">
+              Searching....
+            </h2>
+          )
+        }
 
+        {
+          errors && (
+            <h2 className="text-center mt-6 text-lg text-red-800 font-semibold">
+              {errors}
+            </h2>
+          )
+        }
 
       </div>
     </div>
