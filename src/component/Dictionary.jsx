@@ -23,6 +23,7 @@ const Dictionary = () => {
         `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`,
       );
       console.log(res);
+      setWordData(res.data[0]);
     }catch (error){
       console.log(error);
       setErrors("word Not Found");
@@ -64,6 +65,36 @@ const Dictionary = () => {
             <h2 className="text-center mt-6 text-lg text-red-800 font-semibold">
               {errors}
             </h2>
+          )
+        }
+
+        {
+          wordData && (
+            <div className='mt-8 bg-indigo-50 rounded-2xl p-6'>
+              <h1 className='text-3xl font-bold text-indigo-700'>
+                {wordData.word}
+              </h1>
+              <p className='text-gray-700 mt-1'>
+                  {wordData.phonetic || "phonetic not found"}
+              </p>
+              <div className='m-5 space-y-3'>
+                <div className='bg-white/70 rounded-xl p-3 flex justify-between'>
+                  <span className='font-semibold'>part of Speech</span>
+                  <span>{wordData.meanings[0].partOfSpeech}</span>
+                </div>
+
+                <div className='bg-white/70 rounded-xl p-3'>
+                  <h3 className='font-semibold mb-2'> Meaning</h3>
+                  <p>{wordData.meanings[0].definitions[0].definition}</p>
+                </div>
+
+                <div className='bg-white/70 rounded-xl p-3'>
+                  <h3 className='font-semibold mb-2'> Example</h3>
+                  <p>{wordData.meanings[0].definitions[0].example || "No Example Available"}</p>
+                </div>
+              </div>
+
+            </div>
           )
         }
 
