@@ -45,22 +45,33 @@ const Dictionary = () => {
         </h1>
 
         <div className="flex gap-3">
-          <input
-            type="text"
-            placeholder="🔍 Enter a word..."
-            className="flex-1 px-5 py-3 border border-indigo-300 rounded-xl outline-none focus:ring-2 focus:ring-indigo-400"
-            value={word}
-            onChange={(e) => setWord(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                searchWord();
-              }
-            }}
-          />
+          <div className="relative flex-1">
+            <input
+              type="text"
+              placeholder="Enter any word..."
+              className="w-full border-2 border-indigo-300 rounded-xl px-4 py-3 pr-10 outline-none focus:border-indigo-600"
+              value={word}
+              onChange={(e) => setWord(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  searchWord();
+                }
+              }}
+            />
+
+            {word && (
+              <button
+                onClick={clearSearch}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-red-500 text-xl font-bold"
+              >
+                ✖
+              </button>
+            )}
+          </div>
 
           <button
-            className="bg-indigo-600 hover:bg-indigo-700 transition-all duration-300 text-white px-8 rounded-xl font-semibold shadow-lg cursor-pointer"
             onClick={searchWord}
+            className="bg-indigo-600 text-white px-8 rounded-xl hover:bg-indigo-700"
           >
             Search
           </button>
