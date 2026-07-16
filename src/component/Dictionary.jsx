@@ -124,6 +124,21 @@ const Dictionary = () => {
                     "No example available"}
                 </p>
               </div>
+              <div className="bg-yellow-50 rounded-xl p-4 mt-4">
+                <h3 className="font-semibold text-yellow-700">Synonyms</h3>
+
+                <p className="italic mt-2">
+                  {wordData.meanings.map((meaning, index) => (
+                    <div key={index}>
+                      {meaning.synonyms.length > 0 && (
+                        <div>
+                          <p>{meaning.synonyms.join(", ")}</p>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </p>
+              </div>
             </div>
           </div>
         )}
