@@ -124,8 +124,8 @@ const Dictionary = () => {
                     "No example available"}
                 </p>
               </div>
-              <div className="bg-yellow-50 rounded-xl p-4 mt-4">
-                <h3 className="font-semibold text-yellow-700">Synonyms</h3>
+              <div className="bg-green-200 rounded-xl p-4 mt-4">
+                <h3 className="font-semibold text-red-500">Synonyms</h3>
 
                 <p className="italic mt-2">
                   {wordData.meanings.map((meaning, index) => (
