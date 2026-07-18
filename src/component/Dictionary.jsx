@@ -1,12 +1,15 @@
-import React, { use } from "react";
+import React from "react";
 import { useState } from "react";
 import axios from "axios";
+
 
 const Dictionary = () => {
   const [word, setWord] = useState("");
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState("");
   const [wordData, setWordData] = useState(null);
+
+
 
   const searchWord = async () => {
     try {
@@ -91,9 +94,17 @@ const Dictionary = () => {
 
         {wordData && (
           <div className="mt-8 bg-blue-200 rounded-2xl shadow-lg border border-indigo-100 p-6">
-            <h1 className="text-3xl font-bold text-indigo-700">
-              {wordData.word.charAt(0).toUpperCase() + wordData.word.slice(1)}
-            </h1>
+
+{/* Word or audio ke liye banaya hai */}
+            <div className="flex items-center gap-3">
+              <h1 className="text-3xl font-bold text-indigo-700">
+                {wordData.word.charAt(0).toUpperCase() + wordData.word.slice(1)}
+              </h1>
+
+              <AudioPlayer audioUrl={audioUrl} />
+            </div>
+
+{/* ye hune Phonetic ke liye banaya hai */}
             <p className="text-gray-700  italic mt-2">
               🔊 {wordData.phonetic || "Phonetic not available"}
             </p>
@@ -130,11 +141,9 @@ const Dictionary = () => {
                 <p className="italic mt-2">
                   {wordData.meanings.map((meaning, index) => (
                     <div key={index}>
-                      {meaning.synonyms.length > 0 && (
-                        <div>
-                          <p>{meaning.synonyms.join(", ")}</p>
-                        </div>
-                      )}
+                      {meaning.synonyms.length > 0 ? (
+                        <p>{meaning.synonyms.join(", ")}</p>
+                      ) : null}
                     </div>
                   ))}
                 </p>
