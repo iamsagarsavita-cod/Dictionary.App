@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-
+import AudioPlayer from "./AudioPlayer";
 
 const Dictionary = () => {
   const [word, setWord] = useState("");
@@ -9,7 +9,8 @@ const Dictionary = () => {
   const [errors, setErrors] = useState("");
   const [wordData, setWordData] = useState(null);
 
-
+  // Audio ke liye
+  const audioUrl = wordData?.phonetics?.find((item) => item.audio)?.audio;
 
   const searchWord = async () => {
     try {
@@ -143,7 +144,7 @@ const Dictionary = () => {
                     <div key={index}>
                       {meaning.synonyms.length > 0 ? (
                         <p>{meaning.synonyms.join(", ")}</p>
-                      ) : null}
+                      ) : "No Synonyms Available"}
                     </div>
                   ))}
                 </p>
