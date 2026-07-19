@@ -29,7 +29,7 @@ const Dictionary = () => {
       setWordData(res.data[0]);
     } catch (error) {
       console.log(error);
-      setErrors("word Not Found");
+      setErrors("Word not found. Please try another word.");
     } finally {
       setLoading(false);
     }
@@ -40,6 +40,15 @@ const Dictionary = () => {
     setWordData(null);
     setErrors("");
   };
+
+  // sysnonyms ke liye ek flapMap banake duplicate remove hoge
+  const synonyms = [
+  ...new Set(
+    wordData?.meanings?.flatMap(
+      (meaning) => meaning.synonyms || []
+    ) || []
+  ),
+];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 flex justify-center items-center">
@@ -95,8 +104,7 @@ const Dictionary = () => {
 
         {wordData && (
           <div className="mt-8 bg-blue-200 rounded-2xl shadow-lg border border-indigo-100 p-6">
-
-{/* Word or audio ke liye banaya hai */}
+            {/* Word or audio ke liye banaya hai */}
             <div className="flex items-center gap-3">
               <h1 className="text-3xl font-bold text-indigo-700">
                 {wordData.word.charAt(0).toUpperCase() + wordData.word.slice(1)}
@@ -105,7 +113,7 @@ const Dictionary = () => {
               <AudioPlayer audioUrl={audioUrl} />
             </div>
 
-{/* ye hune Phonetic ke liye banaya hai */}
+            {/* ye hune Phonetic ke liye banaya hai */}
             <p className="text-gray-700  italic mt-2">
               🔊 {wordData.phonetic || "Phonetic not available"}
             </p>
@@ -140,13 +148,9 @@ const Dictionary = () => {
                 <h3 className="font-semibold text-red-500">Synonyms</h3>
 
                 <p className="italic mt-2">
-                  {wordData.meanings.map((meaning, index) => (
-                    <div key={index}>
-                      {meaning.synonyms.length > 0 ? (
-                        <p>{meaning.synonyms.join(", ")}</p>
-                      ) : "No Synonyms Available"}
-                    </div>
-                  ))}
+                  {synonyms.length > 0
+                    ? synonyms.join(", ")
+                    : "No synonyms available"}
                 </p>
               </div>
             </div>
