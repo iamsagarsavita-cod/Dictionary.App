@@ -84,6 +84,7 @@ const Dictionary = () => {
           </button>
         </div>
 
+{/* input bar with light and dark mode */}
         <div className="flex gap-3">
           <div className="relative flex-1">
             <input
