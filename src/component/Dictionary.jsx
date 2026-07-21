@@ -104,7 +104,7 @@ const Dictionary = () => {
                 }
               }}
             />
-
+{/* clear data ke liye */}
             {word && (
               <button
                 onClick={clearSearch}
@@ -115,6 +115,7 @@ const Dictionary = () => {
             )}
           </div>
 
+{/* Search button */}
           <button
             className={`px-8 rounded-xl text-white ${
               darkMode
@@ -126,18 +127,21 @@ const Dictionary = () => {
           </button>
         </div>
 
+{/* loading and Searching */}
         {loading && (
           <h2 className=" text-center mt-6 text-lg text-red-800 font-semibold animate-pulse">
             Searching....
           </h2>
         )}
 
+{/* if error aata hai to */}
         {errors && (
           <h2 className="text-center mt-6 text-lg text-red-800 font-semibold">
             {errors}
           </h2>
         )}
 
+{/* word data or result bala section */}
         {wordData && (
           <div className="mt-8 bg-blue-200 rounded-2xl shadow-lg border border-indigo-100 p-6">
             {/* Word or audio ke liye banaya hai */}
@@ -154,6 +158,7 @@ const Dictionary = () => {
               🔊 {wordData.phonetic || "Phonetic not available"}
             </p>
             <div className="m-5 space-y-3">
+              {/* part of speech ke liye */}
               <div
                 className={`rounded-xl p-4 ${
                   darkMode ? "bg-gray-700" : "bg-indigo-100"
@@ -168,18 +173,22 @@ const Dictionary = () => {
                 </p>
               </div>
 
+              {/* word ka meaning */}
               <div
                 className={`rounded-xl p-4 mt-4 ${
                   darkMode ? "bg-gray-700" : "bg-green-50"
                 }`}
               >
-                <h3 className="font-semibold text-green-700">Meaning</h3>
+                <h3 className="font-semibold text-green-700">
+                  Meaning
+                </h3>
 
                 <p className="mt-2">
                   {wordData.meanings?.[0]?.definitions?.[0]?.definition}
                 </p>
               </div>
 
+              {/* Example ke liye */}
               <div
                 className={`rounded-xl p-4 mt-4 ${
                   darkMode ? "bg-gray-700" : "bg-yellow-50"
@@ -192,6 +201,8 @@ const Dictionary = () => {
                     "No example available"}
                 </p>
               </div>
+
+              {/* synonyms ke liye */}
               <div
                 className={`rounded-xl p-4 mt-4 ${
                   darkMode ? "bg-gray-700" : "bg-green-200"
