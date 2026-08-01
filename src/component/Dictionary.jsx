@@ -119,7 +119,7 @@ const Dictionary = () => {
           <button
             className={`px-8 rounded-xl text-white ${
               darkMode
-                ? "bg-red-500 hover:bg-red-700"
+                ? "bg-red-500 hover:bg-red-600"
                 : "bg-indigo-600 hover:bg-indigo-700"
             }`}
           >
