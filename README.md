@@ -12,17 +12,17 @@ A modern and responsive Dictionary Application built using **React + Vite**.
 
 ### 🌙 Dark Mode
 
-<img src="./screenshots/Home.png" alt="Dark Mode" width="900"/>
+<img src="./Screenshots/Home.png" alt="Dark Mode" width="900"/>
 
 ### ☀️ Light Mode
 
-<img src="./screenshots/Search.png" alt="Light Mode" width="900"/>
+<img src="./Screenshots/Search.png" alt="Light Mode" width="900"/>
 
 ### 📱 Mobile View
 
-<img src="./screenshots/Mobile1.png" alt="Mobile View 1" width="350"/>
+<img src="./Screenshots/Mobile1.png" alt="Mobile View 1" width="350"/>
 
-<img src="./screenshots/Mobile2.png" alt="Mobile View 2" width="350"/>
+<img src="./Screenshots/Mobile2.png" alt="Mobile View 2" width="350"/>
 
 ---
 
