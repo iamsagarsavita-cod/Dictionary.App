@@ -1,51 +1,54 @@
 # 📖 Dictionary App
 
-A modern Dictionary Application built using React + Vite.
+A modern and responsive Dictionary Application built using **React + Vite**.
 
 ## 🚀 Live Demo
 
-👉 https://prismatic-bublanina-5688f9.netlify.app/
+🔗 **https://prismatic-bublanina-5688f9.netlify.app/**
 
 ---
 
 ## 📸 Project Preview
 
-### Home Page
+### 🌙 Dark Mode
 
-![Home](screenshots/home.png)
+<img src="./screenshots/Home.png" alt="Dark Mode" width="900"/>
 
-### Search Result
+### ☀️ Light Mode
 
-![Search](screenshots/search.png)
+<img src="./screenshots/Search.png" alt="Light Mode" width="900"/>
 
-### Mobile View
+### 📱 Mobile View
 
-![Mobile](screenshots/mobile.png)
+<img src="./screenshots/Mobile1.png" alt="Mobile View 1" width="350"/>
+
+<img src="./screenshots/Mobile2.png" alt="Mobile View 2" width="350"/>
 
 ---
 
 ## ✨ Features
 
-- Search any English word
-- Word Meaning
-- Phonetics
-- Audio Pronunciation
-- Part of Speech
-- Synonyms
-- Responsive UI
+- 🔍 Search any English word
+- 📖 Word Meaning & Definition
+- 🔊 Audio Pronunciation
+- 📝 Part of Speech
+- 💡 Example Sentences
+- 🔗 Synonyms
+- 🌙 Light/Dark Theme
+- 📱 Fully Responsive Design
 
 ---
 
-## 🛠 Tech Stack
+## 🛠️ Tech Stack
 
-- React
+- React.js
 - Vite
-- CSS
+- CSS3
 - Dictionary API
 
 ---
 
-## Installation
+## 📦 Installation
 
 ```bash
 npm install
