@@ -84,7 +84,7 @@ const Dictionary = () => {
           </button>
         </div>
 
-{/* input bar with light and dark mode */}
+        {/* input bar with light and dark mode */}
         <div className="flex gap-3">
           <div className="relative flex-1">
             <input
@@ -104,7 +104,7 @@ const Dictionary = () => {
                 }
               }}
             />
-{/* clear data ke liye */}
+            {/* clear data ke liye */}
             {word && (
               <button
                 onClick={clearSearch}
@@ -115,8 +115,9 @@ const Dictionary = () => {
             )}
           </div>
 
-{/* Search button */}
+          {/* Search button */}
           <button
+            onClick={searchWord}
             className={`px-8 rounded-xl text-white ${
               darkMode
                 ? "bg-red-500 hover:bg-red-600"
@@ -127,21 +128,21 @@ const Dictionary = () => {
           </button>
         </div>
 
-{/* loading and Searching */}
+        {/* loading and Searching */}
         {loading && (
           <h2 className=" text-center mt-6 text-lg text-red-800 font-semibold animate-pulse">
             Searching....
           </h2>
         )}
 
-{/* if error aata hai to */}
+        {/* if error aata hai to */}
         {errors && (
           <h2 className="text-center mt-6 text-lg text-red-800 font-semibold">
             {errors}
           </h2>
         )}
 
-{/* word data or result bala section */}
+        {/* word data or result bala section */}
         {wordData && (
           <div className="mt-8 bg-blue-200 rounded-2xl shadow-lg border border-indigo-100 p-6">
             {/* Word or audio ke liye banaya hai */}
@@ -179,9 +180,7 @@ const Dictionary = () => {
                   darkMode ? "bg-gray-700" : "bg-green-50"
                 }`}
               >
-                <h3 className="font-semibold text-green-700">
-                  Meaning
-                </h3>
+                <h3 className="font-semibold text-green-700">Meaning</h3>
 
                 <p className="mt-2">
                   {wordData.meanings?.[0]?.definitions?.[0]?.definition}
