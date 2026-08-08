@@ -165,7 +165,7 @@ const Dictionary = () => {
                   darkMode ? "bg-gray-700" : "bg-indigo-100"
                 }`}
               >
-                <h3 className="font-semibold text-indigo-700">
+                <h3 className="font-semibold text-indigo-600">
                   Part of Speech
                 </h3>
 
@@ -180,7 +180,7 @@ const Dictionary = () => {
                   darkMode ? "bg-gray-700" : "bg-green-50"
                 }`}
               >
-                <h3 className="font-semibold text-green-700">Meaning</h3>
+                <h3 className="font-semibold text-green-600">Meaning</h3>
 
                 <p className="mt-2">
                   {wordData.meanings?.[0]?.definitions?.[0]?.definition}
@@ -193,7 +193,7 @@ const Dictionary = () => {
                   darkMode ? "bg-gray-700" : "bg-yellow-50"
                 }`}
               >
-                <h3 className="font-semibold text-yellow-700">Example</h3>
+                <h3 className="font-semibold text-yellow-600">Example</h3>
 
                 <p className="italic mt-2">
                   {wordData.meanings?.[0]?.definitions?.[0]?.example ||
@@ -207,7 +207,7 @@ const Dictionary = () => {
                   darkMode ? "bg-gray-700" : "bg-green-200"
                 }`}
               >
-                <h3 className="font-semibold text-red-500">Synonyms</h3>
+                <h3 className="font-semibold text-red-600">Synonyms</h3>
 
                 <p className="italic mt-2">
                   {synonyms.length > 0
