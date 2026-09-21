@@ -6,7 +6,9 @@ const AudioPlayer = ({ audioUrl }) => {
 
   const playAudio = () => {
     if (audioRef.current) {
-      audioRef.current.play();
+      audioRef.current.play().catch(() => {
+        // Some browsers block audio until a user gesture or when the file is unavailable.
+      });
     }
   };
 

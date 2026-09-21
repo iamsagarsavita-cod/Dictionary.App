@@ -16,23 +16,39 @@ const Dictionary = () => {
   const audioUrl = wordData?.phonetics?.find((item) => item.audio)?.audio;
 
   const searchWord = async () => {
+    const searchTerm = word.trim();
+
     try {
-      if (word.trim().length === 0) {
+      if (!searchTerm) {
         setErrors("Please Enter a Word...");
         return;
       }
 
       setLoading(true);
       setErrors("");
+      setWordData(null);
 
-      let res = await axios.get(
-        `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`,
+      const apiBaseUrl = import.meta.env.DEV
+        ? "/dictionary"
+        : "https://api.dictionaryapi.dev";
+      const res = await axios.get(
+        `${apiBaseUrl}/api/v2/entries/en/${encodeURIComponent(searchTerm)}`,
       );
-      console.log(res);
-      setWordData(res.data[0]);
+      const entry = res.data?.[0];
+
+      if (!entry) {
+        throw new Error("The dictionary returned no entry for this word.");
+      }
+
+      setWordData(entry);
     } catch (error) {
-      console.log(error);
-      setErrors("Word not found. Please try another word.");
+      if (error.response?.status === 404) {
+        setErrors("Word not found. Please try another word.");
+      } else if (error.response?.status >= 500) {
+        setErrors("The dictionary service is temporarily unavailable. Please try again shortly.");
+      } else {
+        setErrors("Couldn't reach the dictionary service. Check your connection and try again.");
+      }
     } finally {
       setLoading(false);
     }
@@ -44,12 +60,18 @@ const Dictionary = () => {
     setErrors("");
   };
 
-  // sysnonyms ke liye ek flapMap banake duplicate remove hoge
-  const synonyms = [
+  const getRelations = (relation) => [
     ...new Set(
-      wordData?.meanings?.flatMap((meaning) => meaning.synonyms || []) || [],
+      wordData?.meanings?.flatMap((meaning) => [
+        ...(meaning[relation] || []),
+        ...(meaning.definitions?.flatMap(
+          (definition) => definition[relation] || [],
+        ) || []),
+      ]) || [],
     ),
   ];
+  const synonyms = getRelations("synonyms");
+  const antonyms = getRelations("antonyms");
 
   return (
     // Outer BOX
@@ -156,7 +178,7 @@ const Dictionary = () => {
 
             {/* ye hune Phonetic ke liye banaya hai */}
             <p className="text-gray-700  italic mt-2">
-              🔊 {wordData.phonetic || "Phonetic not available"}
+              🔊 {wordData.phonetic || wordData.phonetics?.find((item) => item.text)?.text || "Phonetic not available"}
             </p>
             <div className="m-5 space-y-3">
               {/* part of speech ke liye */}
@@ -213,6 +235,20 @@ const Dictionary = () => {
                   {synonyms.length > 0
                     ? synonyms.join(", ")
                     : "No synonyms available"}
+                </p>
+              </div>
+
+              <div
+                className={`rounded-xl p-4 mt-4 ${
+                  darkMode ? "bg-gray-700" : "bg-red-50"
+                }`}
+              >
+                <h3 className="font-semibold text-red-600">Antonyms</h3>
+
+                <p className="italic mt-2">
+                  {antonyms.length > 0
+                    ? antonyms.join(", ")
+                    : "No antonyms available"}
                 </p>
               </div>
             </div>
